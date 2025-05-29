@@ -1,6 +1,5 @@
 # 🚀 ReferralPlatform — Система реферального рекрутинга
 
-![ReferralPlatform Banner](https://user-images.githubusercontent.com/feitullaverdikhanov/banner-referralplatform.png)
 
 **ReferralPlatform** — это современная платформа для управления вакансиями, кандидатами и партнёрами с реферальной системой, чатами и удобной админ-панелью.
 
@@ -50,13 +49,6 @@
   - Удобная навигация и быстрый доступ к основным функциям.
   - Яркая кнопка-ссылка на GitHub в футере.
 
----
-
-## 📸 Скриншоты
-
-| Главная страница | Кабинет партнёра | Кабинет кандидата |
-|:---:|:---:|:---:|
-| ![vacancies](https://user-images.githubusercontent.com/feitullaverdikhanov/vacancies.png) | ![partner-dashboard](https://user-images.githubusercontent.com/feitullaverdikhanov/partner-dashboard.png) | ![candidate-dashboard](https://user-images.githubusercontent.com/feitullaverdikhanov/candidate-dashboard.png) |
 
 ---
 
@@ -127,8 +119,7 @@ MIT License
 
 ## 🤝 Контакты и обратная связь
 
-- [GitHub Issues](https://github.com/feitullaverdikhanov/filemgr-13/issues) — для багов и предложений
-- [Профиль автора](https://github.com/feitullaverdikhanov)
+- [Профиль автора](https://vk.com/feitulla)
 
 ---
 
