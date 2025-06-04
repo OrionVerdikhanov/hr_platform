@@ -8,7 +8,7 @@ if (!isset($pageTitle)) {
 <head>
     <meta charset="UTF-8">
     <title><?= htmlspecialchars($pageTitle) ?></title>
-    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
 <nav class="topnav">
@@ -21,13 +21,14 @@ if (!isset($pageTitle)) {
     <a href="/candidateReg.php" class="btn-small">Регистрация кандидата</a>
     <a href="/candidateLogin.php" class="btn-small">Вход кандидата</a>
   <?php else: ?>
-    <?php if ($_SESSION['user']['role'] === 'partner'): ?>
-      <a href="/partnerdashboard.php" class="btn-small">Личный кабинет</a>
-      <a href="/partnerlogout.php" class="btn-small btn-danger">Выйти</a>
-    <?php else: ?>
-      <a href="/index.php?page=dashboard" class="btn-small">Личный кабинет</a>
-      <a href="/index.php?logout=1" class="btn-small btn-danger">Выйти</a>
-    <?php endif; ?>
+      <?php if ($_SESSION['user']['role'] === 'partner'): ?>
+        <a href="/partnerdashboard.php" class="btn-small">Личный кабинет</a>
+        <a href="/partnerlogout.php" class="btn-small btn-danger">Выйти</a>
+      <?php else: ?>
+        <a href="/index.php?page=dashboard" class="btn-small">Личный кабинет</a>
+        <a href="/analytics.php" class="btn-small">Аналитика</a>
+        <a href="/index.php?logout=1" class="btn-small btn-danger">Выйти</a>
+      <?php endif; ?>
   <?php endif; ?>
 </nav>
 
