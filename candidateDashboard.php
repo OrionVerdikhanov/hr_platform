@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once 'functions.php';
+require_once 'includes/bootstrap.php';
 
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'candidate') {
     header("Location: candidateLogin.php");
@@ -34,21 +33,9 @@ if ($candidateApplication) {
 $csrfToken = generateCSRFToken();
 ?>
 
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Кабинет кандидата</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <nav class="topnav">
-      <div class="logo">ReferralPlatform</div>
-      <a href="index.php?page=vacancies">Вакансии</a>
-      <a href="candidateDashboard.php">Кабинет кандидата</a>
-      <a href="candidateLogout.php" class="btn-small btn-danger">Выйти</a>
-    </nav>
-    <div class="container">
+$pageTitle = 'Кабинет кандидата';
+include 'templates/header.php';
+<div class="container">
         <h1>Личный кабинет кандидата</h1>
         <h2>Информация о заявке</h2>
         <?php if ($candidateApplication): ?>
@@ -91,5 +78,4 @@ $csrfToken = generateCSRFToken();
             <button type="submit" class="btn-main">Отправить</button>
         </form>
     </div>
-</body>
-</html>
+<?php include 'templates/footer.php'; ?>

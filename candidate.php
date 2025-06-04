@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once 'functions.php';
+require_once 'includes/bootstrap.php';
 
 $message = '';
 
@@ -32,20 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $csrfToken = generateCSRFToken();
 ?>
 
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Подача заявки кандидата</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <nav class="topnav">
-      <div class="logo">ReferralPlatform</div>
-      <a href="index.php?page=vacancies">Вакансии</a>
-      <a href="candidate.php">Подача заявки</a>
-    </nav>
-    <div class="container">
+$pageTitle = 'Подача заявки кандидата';
+include 'templates/header.php';
+<div class="container">
         <h1>Подать заявку кандидата</h1>
         <?php echo $message; ?>
         <form method="POST" class="form-block">
@@ -65,5 +53,4 @@ $csrfToken = generateCSRFToken();
             <button type="submit" class="btn-main">Отправить заявку</button>
         </form>
     </div>
-</body>
-</html>
+<?php include 'templates/footer.php'; ?>

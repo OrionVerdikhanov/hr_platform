@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once 'functions.php';
+require_once 'includes/bootstrap.php';
 
 // Если партнёр уже авторизован, перенаправляем в Личный кабинет
 if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'partner') {
@@ -31,19 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>Вход партнёра</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <nav class="topnav">
-    <div class="logo">ReferralPlatform</div>
-    <a href="index.php">Главная</a>
-  </nav>
-  <div class="container fade-in">
+$pageTitle = 'Вход партнёра';
+include 'templates/header.php';
+<div class="container fade-in">
     <h2>Вход партнёра</h2>
     <?php if (!empty($errorMsg)): ?>
       <p class="alert alert-danger"><?= htmlspecialchars($errorMsg) ?></p>
@@ -60,5 +49,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <button type="submit" class="btn-main" style="margin-top:10px;">Войти</button>
     </form>
   </div>
-</body>
-</html>
+<?php include 'templates/footer.php'; ?>

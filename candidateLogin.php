@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once 'functions.php';
+require_once 'includes/bootstrap.php';
 
 $message = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -21,22 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $csrfToken = generateCSRFToken();
+$pageTitle = 'Вход кандидата';
+include 'templates/header.php';
 ?>
-
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Вход кандидата</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <nav class="topnav">
-      <div class="logo">ReferralPlatform</div>
-      <a href="index.php?page=vacancies">Вакансии</a>
-      <a href="candidateLogin.php">Вход кандидата</a>
-    </nav>
-    <div class="container">
+<div class="container">
         <h1>Вход в кабинет кандидата</h1>
         <?php echo $message; ?>
         <form method="POST" class="form-block" style="max-width:400px;">
@@ -50,5 +37,4 @@ $csrfToken = generateCSRFToken();
             <button type="submit" class="btn-main">Войти</button>
         </form>
     </div>
-</body>
-</html>
+<?php include 'templates/footer.php'; ?>
