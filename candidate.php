@@ -17,8 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($full_name && $email && $cover_letter && $vacancy_id) {
             $result = createCandidateApplication($full_name, $email, $cover_letter, $vacancy_id);
             if ($result) {
+                $newCandidate = isset($result['candidate']['generated_password']) && $result['candidate']['generated_password'];
                 $message = "<p class='alert alert-success'>Ваша заявка отправлена. " .
-                           ($result['candidate']['generated_password'] ? "Ваши учётные данные отправлены на email." : "Вы уже зарегистрированы – используйте свои учётные данные.") .
+                           ($newCandidate ? "Ваши учётные данные отправлены на email." : "Вы уже зарегистрированы – используйте свои учётные данные.") .
                            "</p>";
             } else {
                 $message = "<p class='alert alert-danger'>Ошибка при отправке заявки.</p>";
