@@ -72,7 +72,18 @@
 
 4. **Откройте в браузере:**
    ```
-   http://localhost:8080/index.php
+ http://localhost:8080/index.php
+  ```
+
+## ▶️ Запуск тестов
+
+1. Установите зависимости через Composer:
+   ```bash
+   composer install
+   ```
+2. Запустите тесты PHPUnit:
+   ```bash
+   vendor/bin/phpunit
    ```
 
 ---

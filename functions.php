@@ -19,6 +19,10 @@
  * Если существует файл local.php, он используется, иначе – config.php.
  */
 function getConfig() {
+    $custom = getenv('CONFIG_PATH');
+    if ($custom && file_exists($custom)) {
+        return require $custom;
+    }
     if (file_exists(__DIR__ . '/local.php')) {
         return require __DIR__ . '/local.php';
     }
@@ -34,9 +38,17 @@ function getDBConnection() {
     if (!$pdo) {
         $config = getConfig();
         $db = $config['db'];
-        $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset={$db['charset']}";
+        if (isset($db['dsn'])) {
+            $dsn = $db['dsn'];
+            $username = $db['username'] ?? null;
+            $password = $db['password'] ?? null;
+        } else {
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset={$db['charset']}";
+            $username = $db['username'];
+            $password = $db['password'];
+        }
         try {
-            $pdo = new PDO($dsn, $db['username'], $db['password'], [
+            $pdo = new PDO($dsn, $username, $password, [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
             ]);
