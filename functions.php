@@ -777,6 +777,47 @@ function getAllCandidates() {
     return $stmt->fetchAll();
 }
 
+/** Получить общее количество партнёров */
+function getTotalPartnersCount() {
+    $pdo = getDBConnection();
+    $stmt = $pdo->query("SELECT COUNT(*) as cnt FROM partners");
+    $row = $stmt->fetch();
+    return $row ? (int)$row['cnt'] : 0;
+}
+
+/** Получить общее количество кандидатов */
+function getTotalCandidatesCount() {
+    $pdo = getDBConnection();
+    $stmt = $pdo->query("SELECT COUNT(*) as cnt FROM candidates");
+    $row = $stmt->fetch();
+    return $row ? (int)$row['cnt'] : 0;
+}
+
+/** Получить общее количество вакансий */
+function getTotalVacanciesCount() {
+    $pdo = getDBConnection();
+    $stmt = $pdo->query("SELECT COUNT(*) as cnt FROM vacancies");
+    $row = $stmt->fetch();
+    return $row ? (int)$row['cnt'] : 0;
+}
+
+/** Получить общее количество лидов */
+function getTotalLeadsCount() {
+    $pdo = getDBConnection();
+    $stmt = $pdo->query("SELECT COUNT(*) as cnt FROM leads");
+    $row = $stmt->fetch();
+    return $row ? (int)$row['cnt'] : 0;
+}
+
+/** Получить количество лидов по статусу */
+function getLeadsCountByStatus($status) {
+    $pdo = getDBConnection();
+    $stmt = $pdo->prepare("SELECT COUNT(*) as cnt FROM leads WHERE status = :st");
+    $stmt->execute([':st' => $status]);
+    $row = $stmt->fetch();
+    return $row ? (int)$row['cnt'] : 0;
+}
+
 /****************************************************
  * Дополнительные функции для лидов (при необходимости)
  ****************************************************/

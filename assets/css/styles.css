@@ -3,10 +3,10 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
 
 :root {
-  --main-orange: #FFA500;
-  --main-yellow: #FFD700;
-  --main-bg: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
-  --glass-bg: rgba(255, 248, 225, 0.85);
+  --main-orange: #ff6f61;
+  --main-yellow: #ffd36e;
+  --main-bg: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+  --glass-bg: rgba(253, 252, 251, 0.85);
   --glass-blur: blur(16px);
   --shadow-main: 0 8px 32px 0 rgba(255, 165, 0, 0.18);
   --shadow-card: 0 4px 24px 0 rgba(255, 215, 0, 0.18);
