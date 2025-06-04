@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once 'functions.php';
+require_once 'includes/bootstrap.php';
 
 // Если пользователь не авторизован как партнёр – перенаправляем на страницу входа
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'partner') {
@@ -57,37 +56,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>Личный кабинет партнёра</title>
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    /* Стили для вкладок */
-    .tabs-menu a {
-      margin-right: 10px;
-      padding: 8px 12px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      text-decoration: none;
-      color: inherit;
-    }
-    .tabs-menu a.active {
-      background-color: #FFA500;
-      color: #000;
-    }
-    .tab-content {
-      margin-top: 20px;
-    }
-  </style>
-</head>
-<body>
-<nav class="topnav">
-  <div class="logo">ReferralPlatform</div>
-  <a href="index.php?page=vacancies">Вакансии</a>
-  <a href="partnerlogout.php" class="btn-small btn-danger">Выйти</a>
-</nav>
+$pageTitle = 'Личный кабинет партнёра';
+include 'templates/header.php';
+?>
+<style>
+  /* Стили для вкладок */
+  .tabs-menu a {
+    margin-right: 10px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .tabs-menu a.active {
+    background-color: #FFA500;
+    color: #000;
+  }
+  .tab-content {
+    margin-top: 20px;
+  }
+</style>
 <div class="container fade-in">
   <h2>Личный кабинет партнёра (<?= htmlspecialchars($partner['name'] ?? '') ?>)</h2>
   <div class="tabs-menu">
@@ -197,5 +186,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ?>
   </div>
 </div>
-</body>
-</html>
+<?php include 'templates/footer.php'; ?>

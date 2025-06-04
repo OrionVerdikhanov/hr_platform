@@ -3,8 +3,7 @@
  * Файл: regadmin.php
  * Страница для регистрации админов + вход партнёра
  ****************************************************/
-session_start();
-require_once 'functions.php';
+require_once 'includes/bootstrap.php';
 
 // Если уже авторизован, можно при желании перекинуть на dashboard
 // if (isset($_SESSION['user'])) {
@@ -12,28 +11,9 @@ require_once 'functions.php';
 //    exit;
 // }
 
+$pageTitle = 'Регистрация Админа / Вход Партнёра';
+include 'templates/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>Регистрация Админа / Вход Партнёра</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-<nav class="topnav">
-  <div class="logo">ReferralPlatform</div>
-  <a href="index.php">На главную</a>
-  <?php if(!isset($_SESSION['user'])): ?>
-    <!-- Если не авторизован, кнопка "Логин" для админа/партнёра -->
-    <a href="adminlogin.php" class="btn-small">Вход для Админа</a>
-  <?php else: ?>
-    <a href="index.php?page=dashboard">Личный кабинет</a>
-    <a href="regadmin.php?logout=1" class="btn-small btn-danger">Выйти</a>
-  <?php endif; ?>
-</nav>
-
 <div class="container fade-in">
 <?php
 // Обработка форм
@@ -115,5 +95,4 @@ if (isset($_GET['logout'])) {
 </form>
 
 </div>
-</body>
-</html>
+<?php include 'templates/footer.php'; ?>

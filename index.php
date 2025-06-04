@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once 'functions.php';
+require_once 'includes/bootstrap.php';
 
 if (isset($_GET['ref'])) {
     $pdo = getDBConnection();
@@ -195,37 +194,10 @@ if (($page === 'vacancies' || $page === 'vacancy_details') && isset($_SESSION['r
 }
 
 $csrfToken = generateCSRFToken();
+$pageTitle = 'Referral Platform';
+include 'templates/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>Referral Platform</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-<nav class="topnav">
-  <div class="logo">РНТК 2025</div>
-  <a href="index.php?page=vacancies">Вакансии</a>
-  <?php if (!isset($_SESSION['user'])): ?>
-    <a href="regpartner.php" class="btn-small">Регистрация партнёра</a>
-    <a href="partnerlogin.php" class="btn-small">Вход для партнёра</a>
-    <a href="adminlogin.php" class="btn-small">Вход для Админа</a>
-    <a href="candidateReg.php" class="btn-small">Регистрация кандидата</a>
-    <a href="candidateLogin.php" class="btn-small">Вход кандидата</a>
-  <?php else: ?>
-    <?php if ($_SESSION['user']['role'] === 'partner'): ?>
-      <a href="partnerdashboard.php" class="btn-small">Личный кабинет</a>
-      <a href="partnerlogout.php" class="btn-small btn-danger">Выйти</a>
-    <?php else: ?>
-      <a href="index.php?page=dashboard" class="btn-small">Личный кабинет</a>
-      <a href="index.php?logout=1" class="btn-small btn-danger">Выйти</a>
-    <?php endif; ?>
-  <?php endif; ?>
-</nav>
-
-<div class="container fade-in">
+<div class='container fade-in'>
 <?php
 switch ($page) {
 
@@ -588,6 +560,4 @@ switch ($page) {
         exit;
 }
 ?>
-</div>
-</body>
-</html>
+<?php include 'templates/footer.php'; ?>

@@ -3,8 +3,7 @@
  * Файл: adminlogin.php
  * Отдельная страница для входа администратора
  ****************************************************/
-session_start();
-require_once 'functions.php';
+require_once 'includes/bootstrap.php';
 
 // Если админ уже залогинен, можно сразу перекинуть
 if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') {
@@ -37,26 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 ?>
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>Админ-вход</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-<nav class="topnav">
-  <div class="logo">ReferralPlatform</div>
-  <a href="index.php">Главная</a>
-  <?php if (!isset($_SESSION['user'])): ?>
-    <a href="index.php?page=login" class="btn-small">Вход / Регистрация</a>
-  <?php else: ?>
-    <a href="index.php?page=dashboard" class="btn-small">Личный кабинет</a>
-    <a href="index.php?logout=1" class="btn-small btn-danger">Выйти</a>
-  <?php endif; ?>
-</nav>
-
+$pageTitle = 'Админ-вход';
+include 'templates/header.php';
 <div class="container fade-in">
   <h2>Вход для Админа</h2>
   <?php if (!empty($errorMsg)): ?>
@@ -74,6 +55,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <button type="submit" class="btn-main" style="margin-top:10px;">Войти как админ</button>
   </form>
 </div>
-
-</body>
-</html>
+<?php include 'templates/footer.php'; ?>
