@@ -56,8 +56,8 @@
 
 1. **Клонируйте репозиторий:**
    ```bash
-   git clone https://github.com/feitullaverdikhanov/filemgr-13.git
-   cd filemgr-13
+   git clone https://github.com/OrionVerdikhanov/hr_platform.git
+   cd hr_platform
    ```
 
 2. **Настройте базу данных:**
@@ -103,9 +103,9 @@
 - Красивый футер с кнопкой на GitHub:
 
   <div align="center">
-    <a href="https://github.com/feitullaverdikhanov/filemgr-13" target="_blank" style="display:inline-block; background:linear-gradient(90deg,#000 60%,#FFA500 100%); color:#fff; padding:0.7em 1.7em; border-radius:12px; font-size:1.12rem; font-weight:bold; text-decoration:none; box-shadow:0 2px 16px #FFD70055; margin-top:0.5em; border:2px solid #fffbe7;">
+    <a href="https://github.com/OrionVerdikhanov/hr_platform" target="_blank" style="display:inline-block; background:linear-gradient(90deg,#000 60%,#FFA500 100%); color:#fff; padding:0.7em 1.7em; border-radius:12px; font-size:1.12rem; font-weight:bold; text-decoration:none; box-shadow:0 2px 16px #FFD70055; margin-top:0.5em; border:2px solid #fffbe7;">
       <span style="vertical-align:middle; color:#FFD700; margin-right:0.2em;">⭐</span>
-      Посетите мой GitHub: <b>filemgr-13</b>
+      Посетите мой GitHub: <b>hr_platform</b>
     </a>
   </div>
 
