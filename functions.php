@@ -808,32 +808,55 @@ function getEmployedLeads() {
  */
 function createCandidateApplication($full_name, $email, $cover_letter, $vacancy_id) {
     $pdo = getDBConnection();
-    
+
     // Проверяем, существует ли кандидат (role = 'candidate')
     $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :em AND role = 'candidate'");
     $stmt->execute([':em' => $email]);
     $candidate = $stmt->fetch();
-    
+
     if (!$candidate) {
-        // Кандидат не найден – возвращаем false, чтобы его можно было перенаправить на регистрацию
-        return false;
+        // Автоматическая регистрация кандидата с генерацией пароля
+        $generated_password = bin2hex(random_bytes(4));
+        $hash = password_hash($generated_password, PASSWORD_DEFAULT);
+
+        // Вставка в таблицу users
+        $sql1 = "INSERT INTO users (email, password, role) VALUES (:em, :pw, 'candidate')";
+        $stmt1 = $pdo->prepare($sql1);
+        $stmt1->execute([':em' => $email, ':pw' => $hash]);
+        $user_id = $pdo->lastInsertId();
+
+        // Вставка в таблицу candidates
+        $sql2 = "INSERT INTO candidates (user_id, full_name) VALUES (:uid, :fn)";
+        $stmt2 = $pdo->prepare($sql2);
+        $stmt2->execute([':uid' => $user_id, ':fn' => $full_name]);
+
+        $candidate = [
+            'id' => $user_id,
+            'email' => $email,
+            'role' => 'candidate',
+            'generated_password' => $generated_password
+        ];
+    } else {
+        // Пользователь уже существует
+        $candidate['generated_password'] = null;
+        $user_id = $candidate['id'];
     }
-    
-    // Если кандидат существует, проверяем наличие реферального партнёра
+
+    // Проверяем наличие реферального партнёра
     $ref_partner_id = (isset($_SESSION['ref_partner_id']) && $_SESSION['ref_partner_id'] > 0) ? $_SESSION['ref_partner_id'] : null;
-    
+
     $sql = "INSERT INTO candidate_applications (candidate_id, vacancy_id, full_name, email, cover_letter, status, ref_partner_id)
             VALUES (:cid, :vid, :fn, :em, :cl, 'Новая', :ref)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
-        ':cid' => $candidate['id'],
+        ':cid' => $user_id,
         ':vid' => $vacancy_id,
         ':fn'  => $full_name,
         ':em'  => $email,
         ':cl'  => $cover_letter,
         ':ref' => $ref_partner_id
     ]);
-    
+
     $application_id = $pdo->lastInsertId();
     return [
         'candidate' => $candidate,
